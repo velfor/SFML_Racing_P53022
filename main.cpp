@@ -2,6 +2,7 @@
 #include "settings.h"
 #include "roadobj.h"
 #include "player.h"
+#include "obstacle.h"
 
 using namespace sf;
 int main()
@@ -17,6 +18,8 @@ int main()
 	roadObjInit(grass2, Vector2f{ 0.f, -WINDOW_HEIGHT }, "grass.jpg", 0.f);
 	Player player;
 	playerInit(player);
+	Obstacle obs1;
+	obstacleInit(obs1);
 
 	while (window.isOpen())
 	{
@@ -29,7 +32,13 @@ int main()
 		}
 		roadObjUpdate(grass1);
 		roadObjUpdate(grass2);
-		
+		obstcleUpdate(obs1);
+		//Проверка столкновений
+		if (player.sprite.getGlobalBounds().intersects(obs1.sprite.getGlobalBounds())) 
+		{
+
+		}
+
 		window.clear();
 		roadObjDraw(window, grass1);
 		roadObjDraw(window, grass2);
